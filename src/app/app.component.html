@@ -1,0 +1,59 @@
+<mat-grid-list cols="2" rowHeight="1:2">
+  <mat-grid-tile>
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>
+          <h1>Makiner</h1>
+        </mat-card-title>
+      </mat-card-header>
+
+      <mat-card-content>
+        <mat-list dense>
+          <mat-list-item *ngFor="let maskin of maskiner" (click)="selected(maskin)">
+            <button mat-raised-button color="primary"> {{maskin.name}}</button>
+            <button mat-button (click)="delet(maskin)" color="warn">X</button>
+          </mat-list-item>
+        </mat-list>
+      </mat-card-content>
+    </mat-card>
+  </mat-grid-tile>
+
+  <mat-grid-tile>
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>
+          <h1>
+            <ng-container *ngIf="sellectedMaskin; else prompt">
+              Editing {{sellectedMaskin.name}}
+            </ng-container>
+            <ng-template #prompt>
+              Select a Maskin
+            </ng-template>
+          </h1>
+        </mat-card-title>
+      </mat-card-header>
+
+      <mat-card-title-group>
+        <mat-card-subtitle>Subtitle</mat-card-subtitle>
+      </mat-card-title-group>
+      <form>
+        <mat-card-content>
+          {{sellectedMaskin | json}}
+        </mat-card-content>
+        <mat-action-row>
+          <button type="submit" mat-raised-button (click)="onAction(event)" color="primary">Save</button>
+          <button mat-raised-button (click)="selected(null)" color="warn">Cancel</button>
+        </mat-action-row>
+      </form>
+
+    </mat-card>
+  </mat-grid-tile>
+
+  <mat-grid-tile>
+    <mat-card>
+ 
+    </mat-card>  
+  </mat-grid-tile>
+  
+  <mat-grid-tile>4</mat-grid-tile>
+</mat-grid-list>
